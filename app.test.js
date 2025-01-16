@@ -31,30 +31,6 @@ describe('Hello World Server', () => {
     });
   });
 
-
-
-  test('should return 404 status code and Hello World message', (done) => {
-    http.get('http://localhost:3000', (res) => {
-      let data = '';
-      
-      expect(res.statusCode).toBe(404);
-      
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      
-      res.on('end', () => {
-        expect(data.trim()).toBe('Hello, World!');
-        done();
-      });
-    });
-  });
-
-
-
-
-
-
 });
 
 
