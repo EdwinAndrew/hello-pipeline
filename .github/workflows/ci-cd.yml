@@ -30,17 +30,38 @@ jobs:
     docker:
         needs: test
         runs-on: ubuntu-latest
+        env: 
+            AWS_URI: 820242905388.dkr.ecr.us-east-2.amazonaws.com/hello-pipeline
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
+
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+                aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+                aws-region: us-east-2
+
+            - name: Login to Amazon ECR
+              id: login-ecr
+              uses: aws-actions/amazon-ecr-login@v2
             
             - name: Build Docker Image when triggered by release
               if: ${{github.ref_type == 'tag'}}
-              run: docker build -t hello-pipeline:${{github.ref_name}} -t hello-pipeline:latest .
+              run: |
+                docker build -t hello-pipeline:${{github.ref_name}} .
+                docker tag hello-pipeline:${{github.ref_name}} ${{env.AWS_URI}}:${{github.ref_name}}
+                docker tag hello-pipeline:${{github.ref_name}} ${{env.AWS_URI}}:latest
+                docker push ${{env.AWS_URI}}:${{github.ref_name}}
+                docker push ${{env.AWS_URI}}:latest
 
             - name: Build Docker Image when triggered by push
               if: ${{github.ref_name == 'main'}}
-              run: docker build -t hello-pipeline:latest .
+              run: |
+                docker build -t hello-pipeline:latest .
+                docker tag hello-pipeline:latest ${{env.AWS_URI}}:latest
+                docker push ${{env.AWS_URI}}:latest
 
 
             
