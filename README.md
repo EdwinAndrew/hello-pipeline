@@ -81,7 +81,7 @@ flowchart LR
 
 1. **Clone the Repository**
 ```bash
-git clone <https://github.com/EdwinAndrew/hello-pipeline>
+git clone https://github.com/EdwinAndrew/hello-pipeline
 cd hello-pipeline
 ```
 
