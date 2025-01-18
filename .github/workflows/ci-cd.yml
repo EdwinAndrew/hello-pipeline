@@ -4,6 +4,8 @@ on:
     push:
         branches:
             - main
+        tags:
+            - v*
 
 
 jobs:
@@ -32,8 +34,15 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
             
-            - name: Build Docker Image
-              run: docker build -t hello-pipeline .
+            - name: Build Docker Image when triggered by release
+              if: ${{github.ref_type == 'tag'}}
+              run: docker build -t hello-pipeline:${{github.ref_name}} -t hello-pipeline:latest .
+
+            - name: Build Docker Image when triggered by push
+              if: ${{github.ref_name == 'main'}}
+              run: docker build -t hello-pipeline:latest .
+
+
             
             
 
