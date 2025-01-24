@@ -7,7 +7,7 @@ const podName = process.env.POD_NAME || 'unknown';
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, World! This response is from pod: ${podName}\n');
+  res.end(`Hello, World! This response is from pod: ${podName}\n`);
 });
 
 if (require.main === module) {
