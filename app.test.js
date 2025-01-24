@@ -25,7 +25,7 @@ describe('Hello World Server', () => {
       });
       
       res.on('end', () => {
-        expect(data.trim()).toBe('Hello, World!');
+        expect(data).toContain('Hello, World! This response is from pod:');
         done();
       });
     });
