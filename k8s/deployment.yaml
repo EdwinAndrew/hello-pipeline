@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: hello-pipeline
+  labels:
+    app: hello-pipeline
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-pipeline
+  template:
+    metadata:
+      labels:
+        app: hello-pipeline
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+      - name: hello-pipeline
+        image: 820242905388.dkr.ecr.us-east-2.amazonaws.com/hello-pipeline:latest
+        ports:
+        - containerPort: 3000

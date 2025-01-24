@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-pipeline
+spec:
+  selector: 
+    app: hello-pipeline
+  type: LoadBalancer
+  ports:                  
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
