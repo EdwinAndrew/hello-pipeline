@@ -2,7 +2,7 @@ const http = require('node:http');
 
 const hostname = '0.0.0.0';
 const port = process.env.PORT || 3000;
-const podName = process.env.POD_NAME || 'unknown';
+const podName = process.env.HOSTNAME || 'unknown';
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;

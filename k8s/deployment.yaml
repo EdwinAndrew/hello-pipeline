@@ -21,3 +21,8 @@ spec:
         image: 820242905388.dkr.ecr.us-east-2.amazonaws.com/hello-pipeline:latest
         ports:
         - containerPort: 3000
+        env: 
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
