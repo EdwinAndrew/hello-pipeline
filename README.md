@@ -9,7 +9,8 @@ This project is a hands-on learning exercise to understand and implement modern 
 - Test automation with Jest
 - GitOps practices with Argo CD
 - Infrastructure as Code (future implementation with Terraform)
-- Container orchestration with Kubernetes (planned)
+- Container orchestration with Kubernetes
+- Helm package management
 
 ## Technologies Used
 - **Application**: Node.js
@@ -71,11 +72,19 @@ flowchart LR
    - Semantic versioning for releases (v1.0.0)
    - Latest tag for main branch
    - Automated tagging based on git events
+   - ECR integration
 
 3. **CI/CD Pipeline**
    - Automated builds on push to main
    - Version-tagged releases
    - Multi-stage deployment process
+   - GitOps with ArgoCD
+
+4. **Kubernetes Deployment**
+   - Local development with Minikube
+   - Load balanced service
+   - Pod replicas with health monitoring
+   - Helm-based Argo CD installation
 
 ## How to Run Locally
 
@@ -120,11 +129,11 @@ docker run -p 3000:3000 hello-pipeline:latest
 - (Future) Triggers release deployment
 
 ## Future Enhancements
-1. Kubernetes deployment configuration
-2. Argo CD integration
-3. Infrastructure as Code with Terraform
-4. Enhanced monitoring and logging
-5. Automated rollback procedures
+1. Infrastructure as Code with Terraform
+2. Enhanced monitoring and logging
+3. Automated rollback procedures
+4. Multi-environment configuration
+5. Security hardening
 
 ## Learning Outcomes
 This project demonstrates practical implementation of:
